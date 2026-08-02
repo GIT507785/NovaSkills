@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200" role="img" aria-labelledby="titleDesc">
+  <title id="titleDesc">HASEEB logo</title>
+
+  <!-- Gradient -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6EE7B7"></stop>
+      <stop offset="40%" stop-color="#60A5FA"></stop>
+      <stop offset="100%" stop-color="#A78BFA"></stop>
+    </linearGradient>
+
+    <linearGradient id="shine" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="white" stop-opacity="0.20"></stop>
+      <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+    </linearGradient>
+
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.18"></feDropShadow>
+    </filter>
+  </defs>
+
+  <!-- Monogram circle with adjusted H position -->
+  <g transform="translate(60,20)">
+    <circle cx="70" cy="70" r="70" fill="url(#grad1)" filter="url(#softShadow)"></circle>
+    
+    <!-- Stylized H moved slightly downward (translateY +6) -->
+    <path d="M48 42 h16 a6 6 0 0 1 6 6 v20 h18 v-20 a6 6 0 0 1 6 -6 h16 v68 h-16 a6 6 0 0 1 -6 -6 v-24 h-18 v24 a6 6 0 0 1 -6 6 h-16 z" fill="white" transform="translate(0,6) scale(0.62) translate(12,14)" opacity="0.95"></path>
+    
+    <circle cx="70" cy="70" r="70" fill="url(#shine)" opacity="0.15"></circle>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(190,120)">
+    <text x="0" y="0" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" font-weight="800" font-size="72" letter-spacing="6" fill="url(#grad1)">
+      HASEEB
+    </text>
+    <rect x="0" y="12" width="320" height="6" rx="3" fill="#E6E9FF" opacity="0.35" transform="translate(0,18)"></rect>
+  </g>
+
+  <text x="190" y="170" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" font-size="14" fill="#6b7280">Full-stack developer • Designer</text>
+</svg>

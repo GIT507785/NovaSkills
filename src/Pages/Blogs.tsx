@@ -1,7 +1,12 @@
+import LatestBlogSlider from "../Components/LatestBlogSlider"
+
 
 const Blogs = () => {
   return (
-    <div>Blogs</div>
+    <div>
+      <LatestBlogSlider/>
+      
+    </div>
   )
 }
 

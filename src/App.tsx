@@ -8,10 +8,12 @@ import Blogs from "./Pages/Blogs";
 import BlogDetails from "./Pages/BlogDetails";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import { ToastContainer } from "react-toastify";
 
 const Layout = () => {
   return (
     <>
+    <ToastContainer/>
       <Navbar />
       <Outlet />
       <Footer/>
@@ -33,7 +35,7 @@ const router = createBrowserRouter([
         Component: Blogs,
       },
       {
-        path: "blogs/:id",
+        path: "blog/:id",
         Component: BlogDetails,
       },
     ],
