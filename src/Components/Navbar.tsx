@@ -33,6 +33,13 @@ const Navbar = () => {
     { name: "Contact", path: "/contact", icon: Phone },
   ];
 
+   const mobile_links = [
+    { name: "Home", path: "/", icon: Home },
+    { name: "Services", path: "/", icon: Briefcase },
+    { name: "Resources", path: "/", icon: BookOpen },
+    { name: "Blogs", path: "/blogs", icon: FileText },
+    { name: "Contact", path: "/", icon: Phone },
+  ];
   return (
     <>
       {/* Navbar */}
@@ -114,18 +121,15 @@ const Navbar = () => {
           </button>
 
         </div>
-
         {/* Menu */}
         <div className="p-5 space-y-2">
-
-          {menu.map((item) => {
+          {mobile_links.map((item) => {
             const Icon = item.icon;
-
             return (
               <Link
                 key={item.name}
                 to={item.path}
-                onClick={() => setOpen(false)}
+                onClick={() => {setOpen(false) , window.scrollTo({top:0 , behavior:"smooth"})}}
                 className={`flex items-center gap-4 rounded-xl px-4 py-4 transition ${
                   pathname === item.path
                     ? "bg-pink-500 text-white shadow-lg"
