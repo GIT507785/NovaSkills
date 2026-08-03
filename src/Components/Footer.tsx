@@ -140,18 +140,19 @@ const Footer = () => {
               <p className="text-sm font-semibold text-[#232647] mb-3">
                 Subscribe to our Newsletter
               </p>
+             <div className="flex w-full max-w-md mx-auto">
+  <input
+    type="email"
+    placeholder="Your email"
+    className="w-full h-12 sm:h-14 rounded-l-full border border-gray-200 px-4 text-sm sm:text-base outline-none focus:border-pink-500"
+  />
 
-              <div className="flex">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 rounded-l-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-pink-500"
-                />
-
-                <button className="bg-pink-500 hover:bg-pink-600 text-white px-5 rounded-r-full transition">
-                  <Send size={18} />
-                </button>
-              </div>
+  <button
+    className="flex items-center justify-center w-14 sm:w-16 h-12 sm:h-14 bg-pink-500 hover:bg-pink-600 text-white rounded-r-full transition"
+  >
+    <Send size={18} />
+  </button>
+</div>
             </div>
           </div>
         </div>
