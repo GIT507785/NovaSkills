@@ -1,134 +1,157 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../assets/logo.png";
+import {
+  Home,
+  Briefcase,
+  BookOpen,
+  FileText,
+  Phone,
+  Menu,
+  X,
+  ArrowRight,
+} from "lucide-react";
 
 const Navbar = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+
+ useEffect(() => {
+  document.body.style.overflow = open ? "hidden" : "auto";
+
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [open]);
+
+
+  const menu = [
+    { name: "Home", path: "/", icon: Home },
+    { name: "Services", path: "/services", icon: Briefcase },
+    { name: "Resources", path: "/resources", icon: BookOpen },
+    { name: "Blogs", path: "/blogs", icon: FileText },
+    { name: "Contact", path: "/contact", icon: Phone },
+  ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white mt-2 ">
-     <div className="max-w-7xl mx-auto h-16 flex items-center justify-between px-6 md:px-12 lg:px-20">
+    <>
+      {/* Navbar */}
+      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-gray-100">
+        <div className="max-w-7xl mx-auto h-20 px-6 lg:px-12 flex items-center justify-between">
 
-        {/* Logo */}
-        <Link to="/" className="w-36 lg:w-40">
-          <img
-            src={Logo}
-            alt="NovaSkill"
-            className="w-full h-auto object-contain"
-          />
-        </Link>
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-10">
-          <Link
-             onClick={()=>window.scrollTo({top:0 , behavior: "smooth"})}
-            to="/"
-            className="text-gray-600 hover:text-pink-500 transition"
-          >
-            Home
+          {/* Logo */}
+          <Link to="/">
+            <img src={Logo} className="w-40" alt="Logo" />
           </Link>
 
-          <a
-            href="#services"
-            onClick={()=>window.scrollTo({ top: document.getElementById('services')
-                ?.offsetTop, behavior: "smooth"})}
-            className="text-gray-600 hover:text-pink-500 transition"
-          >
-            Services
-          </a>
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-8">
 
-          <a
-            onClick={()=>window.scrollTo({ top: document.getElementById('services')
-                ?.offsetTop, behavior: 'smooth' })}
-            href="#contact"
-            className="text-gray-600 hover:text-pink-500 transition"
-          >
-            Contact
-          </a>
+            {menu.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className={`transition font-medium ${
+                  pathname === item.path
+                    ? "text-pink-600"
+                    : "text-gray-600 hover:text-pink-500"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
 
-          <a href="#resources"
-            className="text-gray-600 hover:text-pink-500 transition"
-          >
-            Resources
-          </a>
+          </div>
 
-          <Link
-            to="/blogs"
-            className="text-gray-600 hover:text-pink-500 transition"
-          >
-            Blogs
-          </Link>
-        </div>
-
-        {/* Desktop Button */}
-        <div className="hidden md:block">
-          <a href="#contact" className="px-4 py-2 rounded-full border text-sm cursor-pointer border-pink-300 text-gray-800 font-semibold hover:bg-pink-500 hover:text-white transition duration-300">
-            Let's Talk
-          </a>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden"
-        >
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            {open ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {open && (
-        <div className="md:hidden border-t border-gray-200 bg-white">
-          <div className="flex flex-col px-6 py-6 gap-5">
-
-            <Link to="/" onClick={() => setOpen(false)}>
-              Home
-            </Link>
-
-            <Link to="/services" onClick={() => setOpen(false)}>
-              Services
-            </Link>
-
-            <Link to="/contact" onClick={() => setOpen(false)}>
-              Contact
-            </Link>
-
-            <Link to="/resources" onClick={() => setOpen(false)}>
-              Resources
-            </Link>
-
-            <Link to="/blogs" onClick={() => setOpen(false)}>
-              Blogs
-            </Link>
-
-            <button className="mt-3 py-3 rounded-full bg-pink-500 text-white font-semibold hover:bg-pink-600 transition">
+          {/* Desktop Button */}
+          <div className="hidden md:block">
+            <button className="px-6 py-3 rounded-full bg-gradient-to-r from-pink-500 to-fuchsia-600 text-white font-semibold shadow-lg hover:scale-105 duration-300 flex items-center gap-2">
               Let's Talk
+              <ArrowRight size={18} />
             </button>
           </div>
+
+          {/* Mobile Menu */}
+          <button
+            onClick={() => setOpen(true)}
+            className="md:hidden"
+          >
+            <Menu size={30} />
+          </button>
+
         </div>
-      )}
-    </nav>
+      </nav>
+
+      {/* Overlay */}
+      <div
+        onClick={() => setOpen(false)}
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-all duration-300 ${
+          open
+            ? "opacity-100 visible"
+            : "opacity-0 invisible"
+        }`}
+      />
+
+      {/* Sidebar */}
+      <aside
+        className={`fixed top-0 left-0 h-screen w-72 bg-white z-50 shadow-2xl transition-all duration-300 ${
+          open
+            ? "translate-x-0"
+            : "-translate-x-full"
+        }`}
+      >
+
+        {/* Header */}
+        <div className="flex items-center justify-between border-b px-6 h-20">
+
+          <img src={Logo} className="w-36" alt="" />
+
+          <button
+            onClick={() => setOpen(false)}
+            className="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center"
+          >
+            <X />
+          </button>
+
+        </div>
+
+        {/* Menu */}
+        <div className="p-5 space-y-2">
+
+          {menu.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <Link
+                key={item.name}
+                to={item.path}
+                onClick={() => setOpen(false)}
+                className={`flex items-center gap-4 rounded-xl px-4 py-4 transition ${
+                  pathname === item.path
+                    ? "bg-pink-500 text-white shadow-lg"
+                    : "hover:bg-pink-50 text-gray-700"
+                }`}
+              >
+                <Icon size={20} />
+                <span className="font-medium">{item.name}</span>
+              </Link>
+            );
+          })}
+
+        </div>
+
+        {/* Bottom */}
+        <div className="absolute bottom-6 left-5 right-5">
+
+          <button className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-pink-500 to-fuchsia-600 py-4 text-white font-semibold shadow-xl hover:scale-105 transition">
+            Let's Talk
+            <ArrowRight size={18} />
+          </button>
+
+        </div>
+
+      </aside>
+    </>
   );
 };
 

@@ -110,7 +110,7 @@ const Footer = () => {
                   className="text-orange-500 mt-1 flex-shrink-0"
                 />
                 <span className="text-gray-600">
-                  +92 300 1234567
+                  +92 3261045424
                 </span>
               </div>
 
@@ -130,7 +130,7 @@ const Footer = () => {
                   className="text-orange-500 mt-1 flex-shrink-0"
                 />
                 <span className="text-gray-600">
-                  Lahore, Punjab, Pakistan
+                  street no 4 near paragon school qasim road samundri
                 </span>
               </div>
             </div>
