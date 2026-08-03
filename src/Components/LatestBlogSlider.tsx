@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { Clock } from "lucide-react";
 import { VITE_BACKEND_URL } from "../Api/api";
-import { blog_data } from "../assets/assets";
 import BlogCard from "./BlogCard";
 
 interface Blog {

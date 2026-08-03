@@ -2,7 +2,7 @@ import { Loader2 } from "lucide-react";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { assets, blog_data, comments_data } from "../assets/assets";
+import { assets , comments_data } from "../assets/assets";
 import toast from "react-hot-toast";
 import { VITE_BACKEND_URL } from "../Api/api";
 import axios from "axios";
@@ -55,6 +55,10 @@ const [content, setContent] = useState("");
     setLoading(false);
   }
 };
+
+  if(submitting){
+    return null
+  }
 
 const fetchComments = async () => {
   try {
