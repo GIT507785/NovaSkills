@@ -1,33 +1,119 @@
 import { Loader2 } from "lucide-react";
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { assets, blog_data, comments_data } from "../assets/assets";
 import toast from "react-hot-toast";
+import { VITE_BACKEND_URL } from "../Api/api";
+import axios from "axios";
+
+interface Blog {
+ _id: string;
+ authorName: string;
+ title: string;
+ description: string;
+ category: string;
+ image: string;
+ createdAt: string;
+ updatedAt: string;
+ __v: number;
+ isPublished: boolean;
+ subTitle: string;
+} 
+
 
 const BlogDetails = () => {
   const { id } = useParams();
 
-  const blog = blog_data.find((item) => item._id === id);
-  console.log(blog?.description)
+  // const blog = blog_data.find((item) => item._id === id);
+  // console.log(blog?.description)
 
-  const [name, setName] = useState("");
-  const [content, setContent] = useState("");
-  const [loading, setLoading] = useState(false);
+const [blog, setBlog] = useState<Blog | null>(null);
+const [comments, setComments] = useState<any[]>([]);
+const [loading, setLoading] = useState(true);
+const [submitting, setSubmitting] = useState(false);
 
-  const addComment = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+const [name, setName] = useState("");
+const [content, setContent] = useState("");
+ 
+  const fetchBlogDetails = async () => {
+  try {
     setLoading(true);
 
+    const { data } = await axios.get(
+      `${VITE_BACKEND_URL}/api/blog/${id}`
+    );
 
-    setTimeout(() => {
-      toast.success("Comment added successfully!");
+    if (data.success) {
+      setBlog(data.blog);
+    } else {
+      toast.error(data.message);
+    }
+  } catch (error: any) {
+    toast.error(error.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
+const fetchComments = async () => {
+  try {
+    const { data } = await axios.post(
+      `${VITE_BACKEND_URL}/api/blog/comments` ,{blogid : id} 
+    );
+     console.log(comments)
+
+    if (data.success) {
+      setComments(data.comments);
+    } else {
+      toast.error(data.message);
+    }
+  } catch (error: any) {
+    toast.error(error.message);
+  }
+};
+
+  
+
+  const addComment = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  try {
+    setSubmitting(true);
+    console.log("Clicked")
+    console.log(comments)
+
+    const { data } = await axios.post(
+      `${VITE_BACKEND_URL}/api/blog/add-comment`,
+      {
+        blog: id,
+        name,
+        content,
+      }
+    );
+
+    if (data.success) {
+      toast.success(data.message);
+
       setName("");
       setContent("");
-      setLoading(false);
-    }, 800);
-  };
+
+      fetchComments();
+    } else {
+      toast.error(data.message);
+    }
+  } catch (error: any) {
+    toast.error(error.message);
+  } finally {
+    setSubmitting(false);
+  }
+};
+
+   useEffect(()=>{
+    fetchBlogDetails()
+    fetchComments()
+   }
+   ,[])
 
   if (!blog) {
     return (
@@ -88,7 +174,7 @@ const BlogDetails = () => {
             <p className="text-gray-500">No comments yet.</p>
           ) : (
             <div className="space-y-5">
-              {comments_data.map((item, index) => (
+              {comments.map((item, index) => (
                 <div
                   key={index}
                   className="bg-white rounded-xl shadow-md p-5 border"
@@ -178,8 +264,8 @@ const BlogDetails = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div> 
   );
 };
 
-export default BlogDetails;
+export default BlogDetails 

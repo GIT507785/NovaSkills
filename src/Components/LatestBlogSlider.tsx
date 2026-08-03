@@ -8,8 +8,19 @@ import { VITE_BACKEND_URL } from "../Api/api";
 import { blog_data } from "../assets/assets";
 import BlogCard from "./BlogCard";
 
+interface Blog {
+  _id: string;
+  title: string;
+  category: string;
+  image: string;
+  createdAt: string;
+  description: string;
+  isPublished: boolean;
+}
+
+
 const LatestBlogSlider = () => {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [current, setCurrent] = useState(0);
   const [loading, setLoading] = useState(true);
   const sliderRef = useRef<number | null>(null);
@@ -79,7 +90,7 @@ const LatestBlogSlider = () => {
           className="flex transition-transform duration-700 ease-in-out"
           style={{ transform: `translateX(-${current * 100}%)` }}
           >
-          {blog_data.map((blog) => (
+          {blogs.map((blog) => (
             <div key={blog._id} className="min-w-full px-4">
               <Link  to={`/blog/${blog._id}`} className="relative rounded-2xl overflow-hidden shadow-xl">
                 <img
@@ -148,7 +159,7 @@ const LatestBlogSlider = () => {
 </div>
 
       <div className="grid md:grid-cols-3 gap-6 sm:px-10">
-      {blog_data.map((blog) => (
+      {blogs.map((blog) => (
         <BlogCard key={blog._id} blog={blog} />
       ))}
     </div>    

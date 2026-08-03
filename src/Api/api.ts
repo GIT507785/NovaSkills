@@ -1,1 +1,1 @@
-export const VITE_BACKEND_URL = 'https://blog-app-backend-ah2k.onrender.com'
+export const VITE_BACKEND_URL = 'https://novaskills-backend.onrender.com'
