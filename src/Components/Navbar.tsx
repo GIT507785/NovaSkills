@@ -145,14 +145,14 @@ const Navbar = () => {
         </div>
 
         {/* Bottom */}
-        <div className="absolute bottom-16 left-5 right-5">
+        {/* <div className="absolute bottom-16 left-5 right-5">
 
           <button className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-pink-500 to-fuchsia-600 py-4 text-white font-semibold shadow-xl hover:scale-105 transition">
             Let's Talk
             <ArrowRight size={18} />
           </button>
 
-        </div>
+        </div> */}
 
       </aside>
     </>
