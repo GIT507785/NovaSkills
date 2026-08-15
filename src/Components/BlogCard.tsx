@@ -26,7 +26,8 @@ const BlogCard = ({ blog }: BlogCardProps) => {
         window.scrollTo({ top: 0, behavior: "smooth" });
         navigate(`/blog/${_id}`);
       }}
-      className="w-full max-w-sm sm:max-w-md md:max-w-full bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 cursor-pointer group"
+      className="w-full max-w-sm sm:max-w-md md:max-w-full
+      mb-10 bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 cursor-pointer group"
     >
       {/* Image */}
       <div className="overflow-hidden">

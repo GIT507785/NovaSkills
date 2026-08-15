@@ -27,10 +27,10 @@ const Navbar = () => {
 
   const menu = [
     { name: "Home", path: "/", icon: Home },
-    { name: "Services", path: "/services", icon: Briefcase },
-    { name: "Resources", path: "/resources", icon: BookOpen },
+    { name: "Services", href: "#services", icon: Briefcase },
+    { name: "Resources", href: "#resources", icon: BookOpen },
     { name: "Blogs", path: "/blogs", icon: FileText },
-    { name: "Contact", path: "/contact", icon: Phone },
+    { name: "Contact", href: "#contact", icon: Phone },
   ];
 
    const mobile_links = [
@@ -79,7 +79,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu */}
-          <button
+          <button 
             onClick={() => setOpen(true)}
             className="md:hidden"
           >
@@ -145,7 +145,7 @@ const Navbar = () => {
         </div>
 
         {/* Bottom */}
-        <div className="absolute bottom-6 left-5 right-5">
+        <div className="absolute bottom-16 left-5 right-5">
 
           <button className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-pink-500 to-fuchsia-600 py-4 text-white font-semibold shadow-xl hover:scale-105 transition">
             Let's Talk
