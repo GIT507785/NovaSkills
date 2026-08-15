@@ -31,33 +31,33 @@ const Navbar = () => {
   // Desktop Links
   // =========================
 
-  const desktopLinks = [
-    {
-      name: "Home",
-      path: "/",
-      icon: Home,
-    },
-    {
-      name: "Services",
-      section: "services",
-      icon: Briefcase,
-    },
-    {
-      name: "Resources",
-      section: "resources",
-      icon: BookOpen,
-    },
-    {
-      name: "Blogs",
-      path: "/blogs",
-      icon: FileText,
-    },
-    {
-      name: "Contact",
-      section: "contact",
-      icon: Phone,
-    },
-  ];
+  // const desktopLinks = [
+  //   {
+  //     name: "Home",
+  //     path: "/",
+  //     icon: Home,
+  //   },
+  //   {
+  //     name: "Services",
+  //     section: "services",
+  //     icon: Briefcase,
+  //   },
+  //   {
+  //     name: "Resources",
+  //     section: "resources",
+  //     icon: BookOpen,
+  //   },
+  //   {
+  //     name: "Blogs",
+  //     path: "/blogs",
+  //     icon: FileText,
+  //   },
+  //   {
+  //     name: "Contact",
+  //     section: "contact",
+  //     icon: Phone,
+  //   },
+  // ];
 
   // =========================
   // Mobile Links
@@ -332,6 +332,7 @@ const Navbar = () => {
           })}
 
         </div>
+
 
         {/* =========================
             MOBILE LET'S TALK
